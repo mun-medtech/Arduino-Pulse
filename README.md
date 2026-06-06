@@ -1,3 +1,35 @@
 # Outline  # 
 
 This project outlines the setup procedure for the PULSE software, including how to wire and flash the microcontroller and run the GUI for interacting with the device
+
+
+## Arduino GUI + CLI ##
+
+### CLI ###
+
+macOS (Homebrew)
+brew install arduino-cli
+
+Linux
+curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh |sh
+
+Windows (Chocolatey)
+choco install arduino-cli
+
+### Initialize config
+arduino-cli config init
+
+### Update index
+arduino-cli core update-index
+
+### Install AVR core (for Uno)
+arduino-cli core install arduino:avr
+
+### List connected boards
+arduino-cli board list
+
+### Compile a sketch
+sudo ./arduino-cli compile --fqbn arduino:avr:uno ../arduino/read/
+
+### Upload to the board
+sudo ./arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno ../arduino/read/

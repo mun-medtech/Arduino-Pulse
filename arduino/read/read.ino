@@ -6,7 +6,7 @@ void setup() {
   Serial.begin(9600);
 }
 
-void loop() {q
+void loop() {
   rawValue = analogRead(analogPin);
   voltage = rawValue * (5.0 / 1023.0);
 
