@@ -33,3 +33,5 @@ sudo ./arduino-cli compile --fqbn arduino:avr:uno ../arduino/read/
 
 ### Upload to the board
 sudo ./arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno ../arduino/read/
+
+getting threshold values of ~10

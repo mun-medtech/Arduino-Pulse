@@ -14,7 +14,7 @@ def list_ports():
 
 
 class SerialReader(threading.Thread):
-    SPIKE_THRESHOLD = 200
+    SPIKE_THRESHOLD = 100
     HISTORY = 8
 
     def __init__(self, port, baud=9600):

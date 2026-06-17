@@ -75,7 +75,7 @@ class MainWindow(QMainWindow):
         layout.addLayout(controls)
 
         self.plot_widget = pg.PlotWidget()
-        self.plot_widget.setYRange(0, 1023)
+        self.plot_widget.setYRange(0, 500)
         self.plot_widget.setLabel("left", "Value")
         self.plot_widget.setLabel("bottom", "Samples")
         self.plot_widget.showGrid(x=True, y=True, alpha=0.3)
