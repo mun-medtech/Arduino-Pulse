@@ -67,6 +67,8 @@ pip --version
 
 *Expected Output:* `pip xx.x from ... (python 3.x)`
 
+### Note: The EKG sensor should be wire to pins 3.3v, GND, and A0 on an Arduino UNO!
+
 ### Troubleshooting Environment Variables
 
 If you receive an error stating *'python' is not recognized as an internal or external command*, the PATH checkbox was likely missed during installation.
