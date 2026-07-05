@@ -21,9 +21,15 @@
 2. Once complete, leave the "Run Arduino IDE" box checked and click **Finish**.
 3. Ensure the program opens successfully. If Windows Defender Firewall blocks some features, click **Allow access** for private networks.
 
+> **Hardware & Code Setup:**
+> * The EKG sensor should be wired to pins **3.3V**, **GND**, and **A0** on your Arduino UNO.
+> * Ensure your Arduino sketch initializes serial communication with **`Serial.begin(9600);`** inside the `setup()` function.
+> 
+> 
+
 ---
 
-## Part 2: Installing Python and Setup `pip`
+## Part 2: Installing Python and Setting Up `pip`
 
 ### Step 2.1: Download Python
 
@@ -67,10 +73,49 @@ pip --version
 
 *Expected Output:* `pip xx.x from ... (python 3.x)`
 
-### Note: The EKG sensor should be wire to pins 3.3v, GND, and A0 on an Arduino UNO!
-
 ### Troubleshooting Environment Variables
 
 If you receive an error stating *'python' is not recognized as an internal or external command*, the PATH checkbox was likely missed during installation.
 
 * **Fix:** Re-run the downloaded Python installer file, choose **Modify**, and ensure the **"Add Python to environment variables"** or **"PATH"** option is checked on the advanced options page.
+
+---
+
+## Part 4: Installing Dependencies via `requirements.txt`
+
+Before running the game, you need to install the project's external Python libraries (such as those needed for serial communication and graphics).
+
+1. Open the Command Prompt (`cmd`).
+2. Navigate to your project's root directory (where the `requirements.txt` file is located) using the `cd` command:
+```cmd
+cd path\to\your\project_folder
+
+```
+
+
+3. Run the following command to install all necessary dependencies at once:
+```cmd
+pip install -r requirements.txt
+
+```
+
+
+4. Wait for the installation to finish. You should see a message indicating successful installation of the packages.
+
+---
+
+## Part 5: Running the Dino Game GUI
+
+Once the Arduino is plugged in and your Python dependencies are installed, you can launch the game.
+
+1. Ensure you are still in your project's root directory in the Command Prompt.
+2. Execute the Python script located in the `gui` folder by running:
+```cmd
+python gui/dino_game.py
+
+```
+
+
+3. The Dino Game interface should now pop up on your screen.
+
+> ⚠️ **Serial Connection Warning:** Make sure your Arduino is plugged in, and that the game is set to use a baud rate of **9600** (this matches the EKG sensor output rate). If the game asks for a COM port, select the one corresponding to your Arduino UNO.
