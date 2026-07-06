@@ -24,8 +24,47 @@
 > **Hardware & Code Setup:**
 > * The EKG sensor should be wired to pins **3.3V**, **GND**, and **A0** on your Arduino UNO.
 > * Ensure your Arduino sketch initializes serial communication with **`Serial.begin(9600);`** inside the `setup()` function.
-> 
-> 
+
+### Step 1.4: Connect the Arduino Uno
+ 
+1. Plug the Arduino Uno into your computer using a USB cable.
+2. Windows should automatically detect the board and finish installing drivers in the background (usually indicated by a notification in the bottom-right corner).
+### Step 1.5: Select Your Board and Port
+ 
+1. Open the Arduino IDE.
+2. Go to **Tools → Board → Arduino AVR Boards → Arduino Uno**.
+3. Go to **Tools → Port** and select the COM port your Arduino appears on (e.g., `COM3 (Arduino Uno)` or `COM4 (Arduino Uno)`). This number varies by computer and USB port used.
+   - If no port appears under this menu, try a different USB cable or port, and confirm the drivers installed correctly in Step 1.3.
+### Step 1.6: Write or Open Your Sketch
+ 
+If your project doesn't already include an `.ino` file, paste the following basic EMG-reading sketch into a new sketch window:
+ 
+```cpp
+void setup() {
+  Serial.begin(9600);
+}
+ 
+void loop() {
+  int sensorValue = analogRead(A0);
+  Serial.println(sensorValue);
+  delay(10);
+}
+```
+ 
+Save the sketch (**File → Save**) before uploading.
+ 
+### Step 1.7: Flash (Upload) the Sketch
+ 
+1. Click the **right-arrow "Upload" icon** in the top-left toolbar.
+3. It will then upload to the board. Watch for the small **TX/RX LEDs** on the Arduino to blink rapidly, this confirms data is transferring.
+4. When finished, the IDE displays **"Done uploading."** in the status bar.
+**Troubleshooting: "Access is denied" / "unable to open port" errors during upload**
+ 
+This means another program is already holding the COM port open, blocking the IDE from using it. Before retrying:
+- Close any open **Serial Monitor** or **Serial Plotter** window.
+- Stop any running Python script that might be reading the serial port (`Ctrl+C` in its terminal).
+- Close other programs that might use serial ports (PuTTY, VS Code serial extensions, a second Arduino IDE window).
+- If it still fails, unplug and replug the Arduino's USB cable, then try uploading again.
 
 ---
 
@@ -33,8 +72,8 @@
 
 ### Step 2.1: Download Python
 
-1. Go to the official [Python Downloads for Windows](https://www.python.org/downloads/windows/) page.
-2. Click the yellow button that says **"Download Python 3.x.x"** (the latest stable version). This downloads an installer package like `python-3.x.x-amd64.exe`.
+1. Go to the official [Python 3.12 downloads page](https://www.python.org/downloads/release/python-3120/) (or the latest 3.12.x patch release).
+2. Scroll to the **Files** section and click **Windows installer (64-bit)**.
 
 ### Step 2.2: Execute the Installer (Critical Step)
 
