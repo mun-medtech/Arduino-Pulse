@@ -1,93 +1,6 @@
 # 🦖 EKG Dino Game — Setup Guide
 ### Windows Computers | Elementary–High School
 
-### Step 1.1: Download the Installer
-
-1. Open your web browser and navigate to the official [Arduino Software Page](https://www.arduino.cc/en/software).
-2. Locate the **Arduino IDE 2.x.x** section (or the latest stable version).
-3. Click on the link labeled **"Windows Win 10 and newer, 64 bits"**.
-4. On the next page, you can choose to make a donation or click **"JUST DOWNLOAD"** to begin downloading the executable file (e.g., `arduino-ide_2.x.x_Windows_64bit.exe`).
-
-### Step 1.2: Run the Installation Wizard
-
-1. Navigate to your **Downloads** folder and double-click the downloaded `.exe` file.
-2. If a *User Account Control (UAC)* prompt appears asking for permission, click **Yes**.
-3. **License Agreement:** Read the terms and click **I Agree**.
-4. **Installation Options:** Choose whether you want to install the software for *Anyone using this computer* (requires admin privileges) or *Just for me*. Click **Next**.
-5. **Choose Install Location:** Leave the default destination folder as is (`C:\Program Files\Arduino IDE`) and click **Install**.
-
-### Step 1.3: Allow Driver Installation & Verify
-
-1. During installation, Windows may prompt you to install device drivers from "Arduino srl" or "Adafruit Industries". **Crucially click "Install"** on these prompts; these drivers allow your computer to communicate with Arduino hardware over USB.
-2. Once complete, leave the "Run Arduino IDE" box checked and click **Finish**.
-3. Ensure the program opens successfully. If Windows Defender Firewall blocks some features, click **Allow access** for private networks.
-
-> **Hardware & Code Setup:**
-> * The EKG sensor should be wired to pins **3.3V**, **GND**, and **A0** on your Arduino UNO.
-> * Ensure your Arduino sketch initializes serial communication with **`Serial.begin(9600);`** inside the `setup()` function.
-
-### Step 1.4: Connect the Arduino Uno
- 
-1. Plug the Arduino Uno into your computer using a USB cable.
-2. Windows should automatically detect the board and finish installing drivers in the background (usually indicated by a notification in the bottom-right corner).
-### Step 1.5: Select Your Board and Port
- 
-1. Open the Arduino IDE.
-2. Go to **Tools → Board → Arduino AVR Boards → Arduino Uno**.
-3. Go to **Tools → Port** and select the COM port your Arduino appears on (e.g., `COM3 (Arduino Uno)` or `COM4 (Arduino Uno)`). This number varies by computer and USB port used.
-   - If no port appears under this menu, try a different USB cable or port, and confirm the drivers installed correctly in Step 1.3.
-### Step 1.6: Write or Open Your Sketch
- 
-If your project doesn't already include an `.ino` file, paste the following basic EMG-reading sketch into a new sketch window:
- 
-```cpp
-void setup() {
-  Serial.begin(9600);
-}
- 
-void loop() {
-  int sensorValue = analogRead(A0);
-  Serial.println(sensorValue);
-  delay(10);
-}
-```
- 
-Save the sketch (**File → Save**) before uploading.
- 
-### Step 1.7: Flash (Upload) the Sketch
- 
-1. Click the **right-arrow "Upload" icon** in the top-left toolbar.
-3. It will then upload to the board. Watch for the small **TX/RX LEDs** on the Arduino to blink rapidly, this confirms data is transferring.
-4. When finished, the IDE displays **"Done uploading."** in the status bar.
-**Troubleshooting: "Access is denied" / "unable to open port" errors during upload**
- 
-This means another program is already holding the COM port open, blocking the IDE from using it. Before retrying:
-- Close any open **Serial Monitor** or **Serial Plotter** window.
-- Stop any running Python script that might be reading the serial port (`Ctrl+C` in its terminal).
-- Close other programs that might use serial ports (PuTTY, VS Code serial extensions, a second Arduino IDE window).
-- If it still fails, unplug and replug the Arduino's USB cable, then try uploading again.
-
----
-
-## Part 2: Installing Python and Setting Up `pip`
-
-### Step 2.1: Download Python
-
-1. Go to the official [Python 3.12 downloads page](https://www.python.org/downloads/release/python-3120/) (or the latest 3.12.x patch release).
-2. Scroll to the **Files** section and click **Windows installer (64-bit)**.
-
-### Step 2.2: Execute the Installer (Critical Step)
-
-1. Double-click the downloaded Python installer file.
-2. **CRITICAL STEP:** At the bottom of the installation window, check the box that says **"Add python.exe to PATH"**. If you skip this, your command prompt will not recognize Python or `pip` commands.
-3. Check the box for **"Use admin privileges when installing py.exe"** (if available).
-4. Click **Install Now** at the top of the window.
-
-### Step 2.3: Disable Path Length Limit (Optional but Recommended)
-
-1. At the very end of the installation process, the wizard may show an option that says **"Disable path length limit"**.
-2. Click this option. It prevents Windows from running into errors later on if Python packages are buried deep within nested folders.
-3. Click **Close**.
 Welcome! You're about to set up your own heartbeat-powered Dino Game. Follow these steps **in order**, and don't skip any — each one builds on the last. If something doesn't look right, check the "Uh oh, help!" boxes along the way.
 
 ---
@@ -181,16 +94,15 @@ Python is the language that runs the Dino Game itself.
 
 ---
 
-> ⚠️ **Serial Connection Warning:** Make sure your Arduino is plugged in, and that the game is set to use a baud rate of **9600** (this matches the EKG sensor output rate). If the game asks for a COM port, select the one corresponding to your Arduino UNO.
 ## Part 4: Install the Game's Dependencies
 
 "Dependencies" are extra tools the game needs to run (for talking to the Arduino and drawing graphics).
 
 1. In the Command Prompt, navigate to your project folder. For example:
    ```
-   cd path\to\your\project\Arduino-Pulse
+   cd path\to\your\project_folder
    ```
-   (Replace this with wherever your project is saved — for example `cd Desktop\Arduino-Pulse`.)
+   (Replace this with wherever your project is saved — for example `cd Desktop\dino_game_project`.)
 2. Type this and press Enter:
    ```
    pip install -r requirements.txt
@@ -207,7 +119,7 @@ Python is the language that runs the Dino Game itself.
 1. Make sure your Arduino is still plugged in.
 2. In the same Command Prompt window, type:
    ```
-   python dino_game.py
+   python gui/dino_game.py
    ```
 3. The Dino Game window should pop up! 🎉
 
