@@ -34,12 +34,12 @@ Git is a tool that lets you download ("clone") a copy of the project's code onto
    ```
 3. Type the following, replacing the URL with your project's actual repo link, and press Enter:
    ```cmd
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/mun-medtech/Arduino-Pulse.git
    ```
 4. This creates a new folder containing all the project files, including `read.ino`, `requirements.txt`, and the `gui` folder.
 5. Move into the new folder:
    ```cmd
-   cd your-repo-name
+   cd Arduino-Pulse
    ```
 
 ### 🆘 Uh oh, help!
@@ -154,7 +154,7 @@ Python is the language that runs the Dino Game itself.
 
 1. In the Command Prompt, navigate to your project folder (the one you cloned in Part 1):
    ```cmd
-   cd path\to\your\project_folder
+   cd Desktop\Arduino-Pulse
    ```
 2. Type this and press Enter:
    ```cmd
